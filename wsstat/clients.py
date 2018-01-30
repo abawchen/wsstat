@@ -6,6 +6,7 @@ import os
 import time
 import urllib
 import urllib.parse
+import ssl
 from ssl import CertificateError
 
 import urwid
@@ -65,6 +66,7 @@ class WebsocketTestingClient(object):
         self.frame = None
         self.websocket_url = urllib.parse.urlparse(websocket_url)
         self.total_connections = kwargs.get('total_connections', 250)
+        self.self_signed_cert = kwargs.get('self_signed_cert', False)
         self._exiting = False
         self.extra_headers = None
 
@@ -294,6 +296,7 @@ class WebsocketTestingClient(object):
     def setup_websocket_connection(self, statedict):
         return {
             "uri": self.websocket_url.geturl(),
+            "ssl": ssl._create_unverified_context() if self.self_signed_cert else None,
             "extra_headers": self.extra_headers
         }
 

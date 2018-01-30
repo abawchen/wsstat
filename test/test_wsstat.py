@@ -43,6 +43,7 @@ def test_parsing_arguments():
 
     assert args.max_connecting_sockets == 15
     assert args.total_connections == 250
+    assert args.self_signed_cert == False
     assert args.websocket_url == ws_url
 
 @mock.patch('wsstat.main.WSStatConsoleApplication')

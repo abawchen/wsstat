@@ -31,6 +31,14 @@ def parse_args():
         type=int
     )
     parser.add_argument(
+        "-s", "--self-signed-cert",
+        help="Is self-signed certification enabled - default False",
+        dest="self_signed_cert",
+        action="store",
+        default=False,
+        type=bool
+    )
+    parser.add_argument(
         '-H', "--header",
         help="Pass a custom header with each websocket connection",
         dest="header",
